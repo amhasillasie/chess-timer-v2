@@ -1,175 +1,530 @@
-body{
-    background-color: rgb(46, 46, 46);
-    color: white;
-}
-.home{
- font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: white;
-    display: grid;
-     place-items: center;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.p{
-   display: flex;
-   justify-content: center;
-   align-items: center;
+:root {
+  /* Light theme colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --border-hover: #cbd5e0;
   
+  /* Action colors */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-success: #10b981;
+  --color-success-hover: #059669;
+  --color-warning: #f59e0b;
+  --color-warning-hover: #d97706;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-neutral: #6b7280;
+  --color-neutral-hover: #4b5563;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
-.input{
-    padding-left: 5px;
-    position: absolute;
-    left: 45%;
-    border-radius: 5px;
-    width: 195px;
-    height: 30px;
-    border: none;
-}
-.go{
-    position: absolute;
-    left: 45%;
-    border-radius: 5px;
-    width: 200px;
-    height: 30px;
-   background-color: #39cb73;
-}
-.first{
-    padding-top: 5px;
-    border-radius:10px ;
-   
- box-shadow: -10px 6px 10px rgba(0, 0, 0, 0.3);
 
-    margin: 0 auto;
-    width: 400px;
-    margin-top: 80px;
-    background-color: rgba(0, 0, 0, 0.096);
-   
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e0;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --border-hover: #475569;
 }
-.button{
-    padding-top: 20px;
-    display: flex; 
-    justify-content: center;
-     gap: 20%;
-      
-}
-.Pause{
-border: none;
-    background-color: #39cb73;
-    border-radius: 10px;
-    width: 80px;
-    height: 30px;
 
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.Start{
-border: none;
-    background-color: #39cb73;
-    border-radius: 10px;
-    width: 80px;
-    height: 30px;
-}
-.Reset{
-border: none;
-    background-color: #39cb73;
-    border-radius: 10px;
-    width: 80px;
-    height: 30px;
-}
-.Back{
-border: none;
-    background-color: #39cb73;
-    border-radius: 10px;
-    width: 80px;
-    height: 30px;
-}
-.time{
-    display: flex; 
-    justify-content: center;
-    gap: 250px;
-    align-items: center;
-}
-/* .timea{
-    display: flex; 
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 400px;
-    cursor: pointer;
- box-shadow: -10px 6px 10px #01441c;
-  background-color: #39cb73;
-  font-size: 100px;
-border-radius: 10%;
-}
-.timeb{
-    border-radius: 10%;
-    font-size: 100px;
-     display: flex; 
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 400px;
-    cursor: pointer;
-box-shadow: -10px 6px 10px #01441c;
-  background-color: #39cb73;
-}
-.player1{
-    position: absolute;
-    top: 25%;
-    font-size: 20px;
-    padding-top: 20px;
-}
-.player2{
-    position: absolute;
-    top: 25%;
-    font-size: 20px;
-    padding-top: 20px;
-} */
 
-/* RESPONSIVE STYLES FOR TIMER PAGE ONLY */
+/* App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+}
+
+/* Home page styles */
+.first {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  margin-top: 8vh;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-xl);
+  text-align: center;
+}
+
+.header-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  color: var(--color-primary);
+}
+
+.home {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+}
+
+.general {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.input-group {
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input {
+  width: 100%;
+  height: 48px;
+  padding: 0 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input:hover {
+  border-color: var(--border-hover);
+}
+
+.go {
+  width: 100%;
+  height: 48px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.go:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.go:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.go:disabled {
+  background: var(--color-neutral);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Timer page styles */
+.timer-container {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timer-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.timer-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.timer-status {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.status-text {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Timer display */
 .time {
   display: flex;
   justify-content: center;
-  gap: 250px;
   align-items: center;
+  gap: 3rem;
+  margin: 3rem 0;
 }
 
-.timea,
-.timeb {
+.timer-card {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  min-width: 300px;
+  min-height: 320px;
   display: flex;
-  flex-direction: column; /* 👈 allows label above the timer */
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 400px;
-  height: 400px;
+  justify-content: center;
   cursor: pointer;
-  box-shadow: -10px 6px 10px #01441c;
-  background-color: #39cb73;
-  font-size: 100px;
-  border-radius: 10%;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+
+.timer-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+
+.timer-card.active {
+  border-color: var(--color-primary);
+  background: var(--bg-primary);
+}
+
+.timer-card.warning {
+  border-color: var(--color-danger);
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.player-avatar {
+  width: 48px;
+  height: 48px;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.player-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timer-display {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-card.active .timer-display {
+  color: var(--color-primary);
+}
+
+.timer-card.warning .timer-display {
+  color: var(--color-danger);
+}
+
+.timer-indicator {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+.timer-card.warning .pulse-dot {
+  background: var(--color-danger);
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.vs-divider {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+}
+
+/* Control buttons */
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.btn-primary,
+.btn-warning,
+.btn-secondary,
+.btn-danger {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 110px;
+  justify-content: center;
+}
+
+.btn-primary {
+  background: var(--color-success);
   color: white;
 }
 
-.player1,
-.player2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  position: static; /* ❗ no absolute positioning */
-  padding-top: 0;
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-success-hover);
+  transform: translateY(-1px);
 }
-@media (max-width: 900px) {
+
+.btn-warning {
+  background: var(--color-warning);
+  color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background: var(--color-warning-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--color-neutral);
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-neutral-hover);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--color-danger-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled,
+.btn-warning:disabled,
+.btn-secondary:disabled,
+.btn-danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Footer */
+.footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.footer-text {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
   .time {
-    /* flex-direction: column; */
-    gap: 40px;
+    flex-direction: column;
+    gap: 2rem;
   }
 
-  .timea,
-  .timeb {
-    width: 90vw;
-    height: 200px;
-    font-size: 40px;
+  .timer-card {
+    min-width: 280px;
+    min-height: 280px;
+    padding: 2rem 1.5rem;
   }
 
-  .player1,
-  .player2 {
-    font-size: 16px;
-    margin-bottom: 6px;
+  .timer-display {
+    font-size: 2.75rem;
   }
+
+  .vs-divider {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+  }
+
+  .control-buttons {
+    gap: 0.75rem;
+  }
+
+  .btn-primary,
+  .btn-warning,
+  .btn-secondary,
+  .btn-danger {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .first {
+    margin: 4vh auto 2rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .home {
+    font-size: 2rem;
+  }
+
+  .timer-container {
+    padding: 1rem;
+  }
+
+  .timer-card {
+    min-width: 260px;
+    min-height: 240px;
+  }
+
+  .timer-display {
+    font-size: 2.25rem;
+  }
+
+  .theme-toggle {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
