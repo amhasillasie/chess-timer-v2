@@ -6,11 +6,11 @@ import { Timer, Play, Sun, Moon } from "lucide-react";
 
 export default function Home() {
   const [minutes, setMinutes] = useState();
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);

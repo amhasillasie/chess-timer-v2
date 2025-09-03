@@ -16,11 +16,11 @@ export default function Timer() {
   const [timeB, setTimeB] = useState(initialSeconds); 
   const [active, setActive] = useState(null);
   const [paused, setPaused] = useState(true);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const timerRef = useRef(null);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
