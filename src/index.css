@@ -1,0 +1,175 @@
+body{
+    background-color: rgb(46, 46, 46);
+    color: white;
+}
+.home{
+ font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: white;
+    display: grid;
+     place-items: center;
+}
+
+.p{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  
+}
+.input{
+    padding-left: 5px;
+    position: absolute;
+    left: 45%;
+    border-radius: 5px;
+    width: 195px;
+    height: 30px;
+    border: none;
+}
+.go{
+    position: absolute;
+    left: 45%;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+   background-color: #39cb73;
+}
+.first{
+    padding-top: 5px;
+    border-radius:10px ;
+   
+ box-shadow: -10px 6px 10px rgba(0, 0, 0, 0.3);
+
+    margin: 0 auto;
+    width: 400px;
+    margin-top: 80px;
+    background-color: rgba(0, 0, 0, 0.096);
+   
+}
+.button{
+    padding-top: 20px;
+    display: flex; 
+    justify-content: center;
+     gap: 20%;
+      
+}
+.Pause{
+border: none;
+    background-color: #39cb73;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+
+}
+.Start{
+border: none;
+    background-color: #39cb73;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+.Reset{
+border: none;
+    background-color: #39cb73;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+.Back{
+border: none;
+    background-color: #39cb73;
+    border-radius: 10px;
+    width: 80px;
+    height: 30px;
+}
+.time{
+    display: flex; 
+    justify-content: center;
+    gap: 250px;
+    align-items: center;
+}
+/* .timea{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+ box-shadow: -10px 6px 10px #01441c;
+  background-color: #39cb73;
+  font-size: 100px;
+border-radius: 10%;
+}
+.timeb{
+    border-radius: 10%;
+    font-size: 100px;
+     display: flex; 
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    cursor: pointer;
+box-shadow: -10px 6px 10px #01441c;
+  background-color: #39cb73;
+}
+.player1{
+    position: absolute;
+    top: 25%;
+    font-size: 20px;
+    padding-top: 20px;
+}
+.player2{
+    position: absolute;
+    top: 25%;
+    font-size: 20px;
+    padding-top: 20px;
+} */
+
+/* RESPONSIVE STYLES FOR TIMER PAGE ONLY */
+.time {
+  display: flex;
+  justify-content: center;
+  gap: 250px;
+  align-items: center;
+}
+
+.timea,
+.timeb {
+  display: flex;
+  flex-direction: column; /* 👈 allows label above the timer */
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  cursor: pointer;
+  box-shadow: -10px 6px 10px #01441c;
+  background-color: #39cb73;
+  font-size: 100px;
+  border-radius: 10%;
+  color: white;
+}
+
+.player1,
+.player2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  position: static; /* ❗ no absolute positioning */
+  padding-top: 0;
+}
+@media (max-width: 900px) {
+  .time {
+    /* flex-direction: column; */
+    gap: 40px;
+  }
+
+  .timea,
+  .timeb {
+    width: 90vw;
+    height: 200px;
+    font-size: 40px;
+  }
+
+  .player1,
+  .player2 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+}
